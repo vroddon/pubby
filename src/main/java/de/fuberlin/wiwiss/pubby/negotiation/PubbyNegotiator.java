@@ -34,8 +34,11 @@ public class PubbyNegotiator {
 		pubbyNegotiator.addVariant("application/x-turtle;q=0.95")
 				.addAliasMediaType("application/turtle;q=0.8")
 				.addAliasMediaType("text/turtle;q=0.5");
-		pubbyNegotiator.addVariant("text/plain;q=0.2");
 
+		pubbyNegotiator.addVariant("application/json;q=0.77").addAliasMediaType("application/json;q=0.77");
+		pubbyNegotiator.addVariant("text/plain;q=0.2");
+                
+                
 		dataNegotiator = new ContentTypeNegotiator();
 		dataNegotiator.addVariant("application/rdf+xml;q=0.99")
 				.addAliasMediaType("application/xml;q=0.45")
@@ -46,7 +49,10 @@ public class PubbyNegotiator {
 		dataNegotiator.addVariant("application/x-turtle;q=0.99")
 				.addAliasMediaType("application/turtle;q=0.8")
 				.addAliasMediaType("text/turtle;q=0.5");
+		dataNegotiator.addVariant("application/json;q=0.76").addAliasMediaType("application/json;q=0.76");
 		dataNegotiator.addVariant("text/plain;q=0.2");
+                
+                
 	}
 	
 	public static ContentTypeNegotiator getPubbyNegotiator() {

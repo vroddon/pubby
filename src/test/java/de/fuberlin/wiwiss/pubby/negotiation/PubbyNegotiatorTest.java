@@ -9,6 +9,10 @@ public class PubbyNegotiatorTest extends TestCase {
 		negotiator = PubbyNegotiator.getPubbyNegotiator();
 	}
 	
+	public void testAcceptJSON() {
+		assertEquals("application/json",
+				negotiator.getBestMatch("application/json").getMediaType());
+	}
 	public void testAcceptRDFXML() {
 		assertEquals("application/rdf+xml",
 				negotiator.getBestMatch("application/rdf+xml").getMediaType());

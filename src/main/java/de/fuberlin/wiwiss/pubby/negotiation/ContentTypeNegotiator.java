@@ -114,6 +114,7 @@ public class ContentTypeNegotiator {
 			Iterator<VariantSpec> it = variantSpecs.iterator();
 			while (it.hasNext()) {
 				VariantSpec variant = it.next();
+                                System.out.println("Comprendemos: " + variant.type.toString());
 				if (variant.isDefault) {
 					evaluateDefaultVariant(variant.getMediaType());
 				}
@@ -133,6 +134,7 @@ public class ContentTypeNegotiator {
 			if (q * variant.getQuality() > bestMatchingQuality) {
 				bestMatchingVariant = isAliasFor;
 				bestMatchingQuality = q * variant.getQuality();
+                                System.out.println("hasta ahora el mejor es " + bestMatchingVariant+ "  con "+ bestMatchingQuality);
 			}
 		}
 		

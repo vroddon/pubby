@@ -269,7 +269,14 @@ public class RemoteSPARQLDataSource implements DataSource {
 
 		// Try to select language appropriately here based on the model content
 		// type
-		Lang lang = WebContent.contentTypeToLang(actualContentType);
+                
+                System.out.println("El Content Type es: " + actualContentType);
+                Lang lang = Lang.TURTLE;
+                if (actualContentType.equals("text/turtle"))
+                    lang = Lang.TURTLE;
+                //DEPRECATED IN VERSION 2.12
+//		Lang lang = WebContent.contentTypeToLang(actualContentType);
+                
 		if (!RDFLanguages.isTriples(lang))
 			throw new QueryException("Endpoint <" + endpointURL + 
 					"> returned Content Type: " + actualContentType

@@ -23,6 +23,7 @@ public class RequestParamHandler {
 	static {
 		mimeTypes.put("rdfxml", "application/rdf+xml");
 		mimeTypes.put("xml", "application/rdf+xml");
+		mimeTypes.put("json", "application/json");
 
 		// Explicitly asking for output=turtle will still return
 		// the N3 media type because browsers tend to *display*
