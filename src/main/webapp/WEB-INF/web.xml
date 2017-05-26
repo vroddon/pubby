@@ -27,10 +27,23 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <servlet>
+    <servlet-name>PubbyEx</servlet-name>
+    <servlet-class>oeg.pubbyex.Servicio</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>PageURLServlet</servlet-name>
     <url-pattern>/page/*</url-pattern>
   </servlet-mapping>
+
+   <!-- victor -->
+  <servlet-mapping>
+    <servlet-name>PubbyEx</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+
 
   <servlet>
     <servlet-name>ValuesURLServlet</servlet-name>

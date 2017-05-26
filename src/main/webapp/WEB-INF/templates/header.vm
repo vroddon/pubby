@@ -1,6 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>
+    <!-- anyadida por victor -->
+    <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+    
+<title>
 #if ($head_title)
       $head_title
 #else
@@ -34,4 +37,5 @@
 #if ($rdf_link)
       <div id="rdficon"><a href="$rdf_link" title="RDF data"><img src="${server_base}static/rdf-icon.gif" alt="[This page as RDF]" /></a></div>
 #end
+
     </div>

@@ -5,6 +5,22 @@
       <a href="$rdf_link?output=xml">As RDF/XML</a>
       <a href="$rdf_link?output=json">As JSON-LD</a>
 #end
+
+
+
+    <center><small><p id="testelement">Ontology Engineering Group - Universidad Politecnica de Madrid - 2017</p></small></center>
+    <center><small><a href="http://patents.linkeddata.es/data/api/test?uri=$rdf_link">.</a></small></center>
+
+        <script>
+        $(document).ready(function(){
+            console.log("Víctor here $rdf_link");
+        });
+        </script>
+
+
+
+
+
     </div>
   </body>
 </html>
