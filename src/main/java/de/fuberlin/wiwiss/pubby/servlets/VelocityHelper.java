@@ -18,8 +18,7 @@ import org.apache.velocity.context.Context;
  * servlet response output stream.
  */
 public class VelocityHelper {
-	private final static String VELOCITY_ENGINE = 
-		VelocityHelper.class.getName() + ".VELOCITY_ENGINE";
+	private final static String VELOCITY_ENGINE = VelocityHelper.class.getName() + ".VELOCITY_ENGINE";
 	
 	private final ServletContext servletContext;
 	private final HttpServletResponse response;
@@ -47,8 +46,7 @@ public class VelocityHelper {
 		response.addHeader("Pragma", "no-cache");
 		try {
 			OutputStreamWriter writer = new OutputStreamWriter(response.getOutputStream(), "utf-8");
-			getVelocityEngine().mergeTemplate(templateName, velocityContext, 
-					writer);
+			getVelocityEngine().mergeTemplate(templateName, velocityContext,writer);
 			writer.close();
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);

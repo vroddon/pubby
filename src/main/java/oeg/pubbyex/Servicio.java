@@ -15,7 +15,6 @@ import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
 
 /**
  * Cómo construir este proyecto: mvn clean install -DskiptTests
@@ -75,9 +74,9 @@ public class Servicio extends BaseServlet {
             if (!a_name.isEmpty() || !a_country.isEmpty() || res.equals("a"))
             {
                 sparql += "?pat <http://w3id.org/pmo.owl#applicant> ?a .\n";
+                sparql += "?a <http://purl.org/dc/terms/title> ?aname .\n";
             }
             if (a_name!=null && !a_name.isEmpty()) {
-                sparql += "?a <http://purl.org/dc/terms/title> ?aname .\n";
             }  
             if (a_country!=null && !a_country.isEmpty()) {
                 sparql += "?a <http://www.w3.org/2006/vcard/ns#country-name> \"" + a_country + "\" .";
@@ -128,6 +127,12 @@ public class Servicio extends BaseServlet {
         if (value == null) {
             value = "";
         }
+        if (request.getPathInfo().contains("/sparqllog")) {
+            response.setContentType("text/plain;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("asdf");
+            return true;
+        }
 
         if (request.getPathInfo().contains("/search")) {
             response.setContentType("text/plain;charset=UTF-8");
@@ -136,6 +141,8 @@ public class Servicio extends BaseServlet {
             sparql = sparql.replace("_TEMPLATE1_", " SELECT * ");
             
             answer = "<!-- " + sparql +" -->\n"; 
+            
+            answer += contar(request)+"<br>";
             
             //p, q, a
             String res = request.getParameter("res");
@@ -192,34 +199,16 @@ public class Servicio extends BaseServlet {
                     
                 }
             } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                String s = e.getMessage();
-                out.println(s);
-                return true;                
+                answer = "no results";
             }
             PrintWriter out = response.getWriter();
             out.println(answer);
             return true;
         } else if (request.getPathInfo().contains("/count")) {
             response.setContentType("text/plain;charset=UTF-8");
-            String answer = "no answer";
-            String sparql = getSPARQL(request);
-            sparql = sparql.replace("_TEMPLATE1_", " select (count(*) as ?count) ");
-            Query query = QueryFactory.create(sparql);
-            QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, query);
-            try {
-                ResultSet results = qexec.execSelect();
-                for (; results.hasNext();) {
-                    QuerySolution qs = results.next();
-                    String count = qs.get("?count").asLiteral().getLexicalForm();
-                    answer = "Hay un total de " + count + " patentes.";
-                }
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                String s = e.getMessage();
-                out.println(s);
-                return true;                
-            }
+//            String answer = "no answer";
+            
+            String answer = contar(request);
             PrintWriter out = response.getWriter();
             out.println(answer);
             return true;
@@ -230,6 +219,35 @@ public class Servicio extends BaseServlet {
         }
 
         return true;
+    }
+    
+    public String contar(HttpServletRequest request)
+    {
+        String answer="";
+            String sparql = getSPARQL(request);
+            String res = request.getParameter("res");
+            if (res==null || res.isEmpty())
+                res="p";
+            sparql = sparql.replace("_TEMPLATE1_", " select (count(*) as ?count) ");
+            if (res.equals("?p"))
+                sparql = sparql.replace("_TEMPLATE1_", "\n SELECT count(distinct(?pat)) as ?count ");
+            if (res.equals("?i"))
+                sparql = sparql.replace("_TEMPLATE1_", "\n SELECT count(distinct(?i)) as ?count ");
+            if (res.equals("?a"))
+                sparql = sparql.replace("_TEMPLATE1_", "\n SELECT count(distinct(?a)) as ?count ");
+            Query query = QueryFactory.create(sparql);
+            QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, query);
+            try {
+                ResultSet results = qexec.execSelect();
+                for (; results.hasNext();) {
+                    QuerySolution qs = results.next();
+                    String count = qs.get("?count").asLiteral().getLexicalForm();
+                    answer = "Has a total of " + count + " results.";
+                }
+            } catch (Exception e) {
+                answer = "no results";
+            }
+            return answer;
     }
 
 }

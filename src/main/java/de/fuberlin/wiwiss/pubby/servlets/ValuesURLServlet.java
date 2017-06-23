@@ -30,11 +30,9 @@ public class ValuesURLServlet extends ValuesBaseServlet {
 		ResourceDescription resource = controller.getResourceDescription();
 		if (resource == null) return false;
 
-		Model descriptions = config.getDataSource().listPropertyValues(
-				controller.getAbsoluteIRI(), predicate, isInverse);
+		Model descriptions = config.getDataSource().listPropertyValues(controller.getAbsoluteIRI(), predicate, isInverse);
 		if (descriptions.isEmpty()) return false;
-		ResourceProperty property = new ResourceDescription(
-				controller, descriptions, config).getProperty(predicate, isInverse);
+		ResourceProperty property = new ResourceDescription(controller, descriptions, config).getProperty(predicate, isInverse);
 		if (property == null) return false;	// Can happen if prefix is declared in URI space of a data source rather than in web space
 		
 		VelocityHelper template = new VelocityHelper(getServletContext(), response);
