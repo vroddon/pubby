@@ -20,7 +20,7 @@
 <> a conf:Configuration;
     conf:projectName "Patents";
     conf:projectHomepage <http://patents.linkeddata.es/>;
-    conf:webBase <http://patents.linkeddata.es/data/>;  #<http://patents.linkeddata.es/data/>;
+    conf:webBase <http://patents.linkeddata.es/data/>;  
     conf:usePrefixesFrom <>;
     conf:defaultLanguage "en";
     conf:indexResource <http://patents.linkeddata.es/data/p/ES2414581> ;

@@ -18,13 +18,19 @@
   <servlet>
     <servlet-name>WebURIServlet</servlet-name>
     <servlet-class>de.fuberlin.wiwiss.pubby.servlets.WebURIServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
+    <load-on-startup>2</load-on-startup>
   </servlet>
 
   <servlet>
     <servlet-name>PageURLServlet</servlet-name>
     <servlet-class>de.fuberlin.wiwiss.pubby.servlets.PageURLServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DataURLServlet</servlet-name>
+    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.DataURLServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
   </servlet>
 
   <servlet>
@@ -32,6 +38,26 @@
     <servlet-class>oeg.pubbyex.Servicio</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  <servlet>
+    <servlet-name>ValuesURLServlet</servlet-name>
+    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.ValuesURLServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ValuesDataURLServlet</servlet-name>
+    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.ValuesDataURLServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+    <servlet>
+    <servlet-name>RootServlet</servlet-name>
+    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.RootServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>    
+
+  
 
   <servlet-mapping>
     <servlet-name>PageURLServlet</servlet-name>
@@ -44,45 +70,23 @@
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
 
-
-  <servlet>
-    <servlet-name>ValuesURLServlet</servlet-name>
-    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.ValuesURLServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
   <servlet-mapping>
     <servlet-name>ValuesURLServlet</servlet-name>
     <url-pattern>/values/*</url-pattern>
   </servlet-mapping>
 
-  <servlet>
-    <servlet-name>DataURLServlet</servlet-name>
-    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.DataURLServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
 
   <servlet-mapping>
     <servlet-name>DataURLServlet</servlet-name>
     <url-pattern>/data/*</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>ValuesDataURLServlet</servlet-name>
-    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.ValuesDataURLServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
 
   <servlet-mapping>
     <servlet-name>ValuesDataURLServlet</servlet-name>
     <url-pattern>/values.data/*</url-pattern>
   </servlet-mapping>
 
-  <servlet>
-    <servlet-name>RootServlet</servlet-name>
-    <servlet-class>de.fuberlin.wiwiss.pubby.servlets.RootServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>    
 
   <!-- Handles everything not caught by the others -->
   <servlet-mapping>
